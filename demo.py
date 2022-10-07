@@ -15,7 +15,7 @@ def get_args():
     parser.add_argument("--device", type=int, default=0)
     parser.add_argument("--movie", type=str, default=None)
     parser.add_argument("--width", help='cap width', type=int, default=640)
-    parser.add_argument("--height", help='cap height', type=int, default=360)
+    parser.add_argument("--height", help='cap height', type=int, default=480)
 
     parser.add_argument(
         "--model",
@@ -30,7 +30,7 @@ def get_args():
     parser.add_argument(
         '--score_th',
         type=float,
-        default=0.4,
+        default=0.3,
     )
     parser.add_argument(
         '--nms_th',
@@ -156,8 +156,9 @@ def draw_debug(
         )
 
     # 推論時間
-    text = 'Elapsed time:' + '%.0f' % (elapsed_time * 1000)
-    text = text + 'ms'
+    # text = 'Elapsed time:' + '%.0f' % (elapsed_time * 1000)
+    text = 'FPS:' + '%.00f' % (1.0/elapsed_time)
+    # text = text + 'ms'
     debug_image = cv2.putText(
         debug_image,
         text,
